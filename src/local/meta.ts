@@ -8,11 +8,11 @@ export type Meta = {
   FAVICON_PATH: string;
 };
 
-const TITLE = "hinagata-next";
+const TITLE = "stripe-sample";
 const DESCRIPTION = "Awsome next.js project.";
 const KEYWORDS = ["next", "javascript"];
 const BASE_PATH = "/";
-const URL = `https://hinagata-next.example.com${BASE_PATH}`;
+const URL = `https://stripe-sample.example.com${BASE_PATH}`;
 const SHARE_IMAGE_URL = `${URL}ogp.png`;
 const FAVICON_PATH = "/favicon.ico";
 
