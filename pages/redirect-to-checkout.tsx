@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from "react";
 import { css } from "@emotion/core";
 import { Elements, useStripe } from "@stripe/react-stripe-js";
-import { loadStripe } from "@stripe/stripe-js";
+import { loadStripe, RedirectToCheckoutOptions } from "@stripe/stripe-js";
 import { px } from "~/lib/cssUtil";
 import { STRIPE_API_KEY } from "~/local/stripeConfig";
 import DefaultLayout from "~/layouts/DefaultLayout";
@@ -90,13 +90,17 @@ const CardForm = () => {
         quantity: counts.get(id) || 0
       }))
       .filter(p => p.quantity > 0);
-    stripe.redirectToCheckout({
-      mode: "payment",
+    const options: RedirectToCheckoutOptions = {
       successUrl: window.location.href,
       cancelUrl: window.location.href,
-      locale: "ja",
-      lineItems
-    });
+      locale: "ja"
+    };
+    stripe.redirectToCheckout({
+      mode: "payment",
+      lineItems,
+      ...options
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } as any);
   };
 
   return (
